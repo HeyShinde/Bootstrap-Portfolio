@@ -1,10 +1,3 @@
-/**
- * Template Name: iPortfolio
- * Updated: Jan 09 2024 with Bootstrap v5.3.2
- * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
- * Author: BootstrapMade.com
- * License: https://bootstrapmade.com/license/
- */
 (function () {
   "use strict";
 
@@ -20,9 +13,6 @@
     }
   };
 
-  /**
-   * Easy event listener function
-   */
   const on = (type, el, listener, all = false) => {
     let selectEl = select(el, all);
     if (selectEl) {
@@ -76,22 +66,6 @@
   };
 
   /**
-   * Back to top button
-   */
-  let backtotop = select(".back-to-top");
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add("active");
-      } else {
-        backtotop.classList.remove("active");
-      }
-    };
-    window.addEventListener("load", toggleBacktotop);
-    onscroll(document, toggleBacktotop);
-  }
-
-  /**
    * Mobile nav toggle
    */
   on("click", ".mobile-nav-toggle", function (e) {
@@ -101,7 +75,7 @@
   });
 
   /**
-   * Scrool with ofset on links with a class name .scrollto
+   * Scrool with offset on links with a class name .scrollto
    */
   on(
     "click",
@@ -124,7 +98,7 @@
   );
 
   /**
-   * Scroll with ofset on page load with hash links in the url
+   * Scroll with offset on page load with hash links in the url
    */
   window.addEventListener("load", () => {
     if (window.location.hash) {
@@ -134,9 +108,9 @@
     }
   });
 
-  /**
-   * Hero type effect
-   */
+  //   /**
+  //    * Hero type effect
+  //    */
   const typed = select(".typed");
   if (typed) {
     let typed_strings = typed.getAttribute("data-typed-items");
@@ -149,125 +123,4 @@
       backDelay: 2000,
     });
   }
-
-  /**
-   * Skills animation
-   */
-  let skilsContent = select(".skills-content");
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: "80%",
-      handler: function (direction) {
-        let progress = select(".progress .progress-bar", true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute("aria-valuenow") + "%";
-        });
-      },
-    });
-  }
-
-  /**
-   * Porfolio isotope and filter
-   */
-  window.addEventListener("load", () => {
-    let portfolioContainer = select(".portfolio-container");
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: ".portfolio-item",
-      });
-
-      let portfolioFilters = select("#portfolio-flters li", true);
-
-      on(
-        "click",
-        "#portfolio-flters li",
-        function (e) {
-          e.preventDefault();
-          portfolioFilters.forEach(function (el) {
-            el.classList.remove("filter-active");
-          });
-          this.classList.add("filter-active");
-
-          portfolioIsotope.arrange({
-            filter: this.getAttribute("data-filter"),
-          });
-          portfolioIsotope.on("arrangeComplete", function () {
-            AOS.refresh();
-          });
-        },
-        true
-      );
-    }
-  });
-
-  /**
-   * Initiate portfolio lightbox
-   */
-  const portfolioLightbox = GLightbox({
-    selector: ".portfolio-lightbox",
-  });
-
-  /**
-   * Portfolio details slider
-   */
-  new Swiper(".portfolio-details-slider", {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-  });
-
-  /**
-   * Testimonials slider
-   */
-  new Swiper(".testimonials-slider", {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    slidesPerView: "auto",
-    pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 20,
-      },
-
-      1200: {
-        slidesPerView: 3,
-        spaceBetween: 20,
-      },
-    },
-  });
-
-  /**
-   * Animation on scroll
-   */
-  window.addEventListener("load", () => {
-    AOS.init({
-      duration: 1000,
-      easing: "ease-in-out",
-      once: true,
-      mirror: false,
-    });
-  });
-
-  /**
-   * Initiate Pure Counter
-   */
-  new PureCounter();
 })();
